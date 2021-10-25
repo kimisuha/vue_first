@@ -8,6 +8,7 @@
           class="form-control"
           name="title"
           placeholder="input a title!"
+          v-model="title"
         />
       </div>
 
@@ -18,9 +19,10 @@
           rows="10"
           class="form-control"
           placeholder="input content here!"
+          v-model="content"
         ></textarea>
       </div>
-      <button type="button" class="btn btn-primary mx-auto d-block mb-3">
+      <button type="button" class="btn btn-primary mx-auto d-block mb-3" v-on:click="add">
         add
       </button>
     </form>
@@ -32,6 +34,20 @@ import Navbar from "../components/navbar.vue";
 export default {
   components: { Navbar },
   name: "AddNew",
+  data() {
+    return {
+      text: { }
+    }
+  },
+  methods: {
+    add(){
+      this.text.title = this.title;
+      this.text.content = this.content;
+      localStorage.setItem("text", JSON.stringify(this.text));
+      console.log(JSON.parse(localStorage.getItem("text")));
+      window.location.href = 'http://192.168.88.102:8080/';
+    },
+  },
 };
 </script>
 <style lang="css">
@@ -44,7 +60,4 @@ export default {
   font-size: larger;
   margin-left: 0.5rem;
 }
-/* .addnew button{
-    margin-left: 25rem;
-} */
 </style>

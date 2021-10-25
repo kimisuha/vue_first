@@ -1,8 +1,8 @@
 <template>
   <div class="home mt-4 m-auto">
     <div class="card mb-3">
-      <h1 class="card-title">title</h1>
-      <p class="card-text">content</p>
+      <h1 class="card-title"> {{ this.text.title }} </h1>
+      <p class="card-text">{{ this.text.content }}</p>
     </div>
   </div>
   <Navbar />
@@ -19,6 +19,14 @@ export default {
   components: {
     Navbar,
   },
+  data() {
+    return {
+      text: { }
+    }
+  },
+  mounted() {
+    return this.text = JSON.parse(localStorage.getItem("text"));
+  }
 };
 </script>
 <style lang="css">
